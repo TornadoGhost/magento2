@@ -1,0 +1,13 @@
+{
+    "powerbank": {
+        "column": {
+            "name": true,
+            "capacity": true,
+            "weight": true,
+            "powerbank_id": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    }
+}

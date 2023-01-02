@@ -1,0 +1,46 @@
+{
+    "book": {
+        "column": {
+            "id_book": true,
+            "title": true,
+            "description": true,
+            "created_at": true,
+            "updated_at": true,
+            "book_id": true,
+            "author_id": true,
+            "publisher_id": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "BOOK_AUTHOR_ID_AUTHOR_AUTHOR_ID": true,
+            "BOOK_PUBLISHER_ID_PUBLISHER_PUBLISHER_ID": true
+        }
+    },
+    "author": {
+        "column": {
+            "id_author": true,
+            "first_name": true,
+            "last_name": true,
+            "created_at": true,
+            "updated_at": true,
+            "author_id": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    },
+    "publisher": {
+        "column": {
+            "id_publisher": true,
+            "name": true,
+            "opened_at": true,
+            "closed_at": true,
+            "created_at": true,
+            "updated_at": true,
+            "publisher_id": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    }
+}

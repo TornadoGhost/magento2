@@ -1,0 +1,90 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Magento\Framework\Search\Adapter\OptionsInterface" type="Magento\CatalogSearch\Model\Adapter\Options" />
+    <preference for="Magento\CatalogSearch\Model\Indexer\IndexSwitcherInterface" type="Magento\CatalogSearch\Model\Indexer\IndexSwitcherProxy"/>
+    <preference for="Magento\CatalogSearch\Model\Adapter\Aggregation\RequestCheckerInterface" type="Magento\CatalogSearch\Model\Adapter\Aggregation\RequestCheckerComposite"/>
+    <preference for="Magento\CatalogSearch\Model\ResourceModel\Fulltext\Collection\SearchCriteriaResolverInterface" type="Magento\CatalogSearch\Model\ResourceModel\Fulltext\Collection\SearchCriteriaResolver"/>
+    <preference for="Magento\CatalogSearch\Model\ResourceModel\Fulltext\Collection\SearchResultApplierInterface" type="Magento\CatalogSearch\Model\ResourceModel\Fulltext\Collection\SearchResultApplier"/>
+    <preference for="Magento\CatalogSearch\Model\ResourceModel\Fulltext\Collection\TotalRecordsResolverInterface" type="Magento\CatalogSearch\Model\ResourceModel\Fulltext\Collection\TotalRecordsResolver"/>
+    <preference for="Magento\CatalogSearch\Model\Search\ItemCollectionProviderInterface" type="Magento\CatalogSearch\Model\Search\ItemCollectionProvider"/>
+    <preference for="Magento\Framework\Indexer\IndexStructureInterface" type="Magento\CatalogSearch\Model\Indexer\IndexStructure" />
+    <preference for="Magento\CatalogSearch\Model\Search\Request\ModifierInterface" type="Magento\CatalogSearch\Model\Search\Request\ModifierComposite" />
+    <type name="Magento\Catalog\Model\Indexer\Product\Full">
+        <arguments>
+            <argument name="indexerList" xsi:type="array">
+                <item name="catalogsearch_fulltext" xsi:type="const">Magento\CatalogSearch\Model\Indexer\Fulltext::INDEXER_ID</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Index\Custom\Model\Indexer\Test">
+        <arguments>
+            <argument name="dimensionProvider" xsi:type="object" shared="false">
+                Magento\Store\Model\StoreDimensionProvider
+            </argument>
+        </arguments>
+    </type>
+
+
+    <type name="Magento\Eav\Model\Entity\Setup\PropertyMapper\Composite">
+        <arguments>
+            <argument name="propertyMappers" xsi:type="array">
+                <item name="catalog_search" xsi:type="string">Magento\CatalogSearch\Model\ResourceModel\Setup\PropertyMapper</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Magento\CatalogSearch\Model\Indexer\Fulltext\Action\DataProvider">
+        <plugin name="stockedProductsFilterPlugin" type="Magento\CatalogSearch\Model\Indexer\Plugin\StockedProductsFilterPlugin"/>
+    </type>
+    <type name="Magento\CatalogSearch\Model\Indexer\Fulltext\Action\Full">
+        <arguments>
+            <!-- @deprecated parameter indexIteratorFactory has been deprecated and not in use now -->
+            <argument name="indexIteratorFactory" xsi:type="null" />
+        </arguments>
+    </type>
+    <type name="Magento\CatalogSearch\Model\ResourceModel\Advanced\Collection">
+        <arguments>
+            <!-- @deprecated parameter requestBuilder has been deprecated and not in use now -->
+            <argument name="requestBuilder" xsi:type="null" />
+            <!-- @deprecated parameter searchEngine has been deprecated and not in use now -->
+            <argument name="searchEngine" xsi:type="null" />
+            <!-- @deprecated parameter temporaryStorageFactory has been deprecated and not in use now -->
+            <argument name="temporaryStorageFactory" xsi:type="null" />
+        </arguments>
+    </type>
+    <type name="Magento\CatalogSearch\Model\ResourceModel\Fulltext\Collection">
+        <arguments>
+            <!-- @deprecated parameter catalogSearchData has been deprecated and not in use now -->
+            <argument name="catalogSearchData" xsi:type="null" />
+            <!-- @deprecated parameter requestBuilder has been deprecated and not in use now -->
+            <argument name="requestBuilder" xsi:type="null" />
+            <!-- @deprecated parameter searchEngine has been deprecated and not in use now -->
+            <argument name="searchEngine" xsi:type="null" />
+            <!-- @deprecated parameter temporaryStorageFactory has been deprecated and not in use now -->
+            <argument name="temporaryStorageFactory" xsi:type="null" />
+        </arguments>
+    </type>
+    <type name="Magento\CatalogSearch\Model\Search\Request\ModifierComposite">
+        <arguments>
+            <argument name="modifiers" xsi:type="array">
+                <item name="search" xsi:type="object">Magento\CatalogSearch\Model\Search\Request\SearchModifier</item>
+                <item name="partial_search" xsi:type="object">Magento\CatalogSearch\Model\Search\Request\PartialSearchModifier</item>
+                <item name="match_queries" xsi:type="object">Magento\CatalogSearch\Model\Search\Request\MatchQueriesModifier</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Magento\CatalogSearch\Model\Search\Request\MatchQueriesModifier">
+        <arguments>
+            <argument name="queries" xsi:type="array">
+                <item name="partial_search" xsi:type="array">
+                    <item name="name" xsi:type="array">
+                        <item name="analyzer" xsi:type="string">prefix_search</item>
+                    </item>
+                    <item name="sku" xsi:type="array">
+                        <item name="analyzer" xsi:type="string">sku_prefix_search</item>
+                    </item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+</config>

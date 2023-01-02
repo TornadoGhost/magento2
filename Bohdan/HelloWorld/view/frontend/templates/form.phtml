@@ -1,0 +1,71 @@
+<?php
+
+use Bohdan\HelloWorld\Block\Display;
+
+/**
+ * @var Display $block
+ */
+?>
+
+<div class="row">
+    <div class="col-md-8">
+        <form name="addData" method="post" id="addData" class="form"
+              action="<?php echo $this->getUrl('main/index/save'); ?>"
+              data-hasrequired="<?= $block->escapeHtmlAttr(__('* Required Fields')) ?>"
+              data-mage-init='{"validation":{}}'>
+            <fieldset class="fieldset">
+                <legend class="legend"><span><?= $block->escapeHtmlAttr(__('Fill Detail')) ?></span></legend>
+                <fieldset class="fieldset row">
+                    <div class="fields col-md-6">
+                        <div class="field name required">
+                            <label class="label" for="title"><span><?= $block->
+                                    escapeHtmlAttr(__('Book Title')) ?></span></label>
+                            <div class="control">
+                                <input name="title" id="title" title="Title" value="" class="input-text" type="text"
+                                       data-validate="{required:true}">
+                            </div>
+                        </div>
+                        <div class="field name required">
+                            <label class="label" for="description"><span><?= $block->
+                                    escapeHtmlAttr(__('Book description')) ?></span></label>
+                            <div class="control">
+                                <input name="description" id="description" title="Description" value="" class="input-text" type="text"
+                                       data-validate="{required:true}">
+                            </div>
+                        </div>
+                        <div class="field name required">
+                            <label class="label" for="author_id"><span><?= $block->
+                                    escapeHtmlAttr(__('Author')) ?></span></label>
+                            <div class="control">
+                                <select name="author_id" data-validate="{}">
+                                    <option value="" disabled selected>Select Author</option>
+                                    <?php foreach($block->getAllAuthors() as $author){
+                                        ?><option value="<?php echo $author->getAuthorId() ?>"><?php echo $author->getFirstName() . " " . $author->getLastName() ?></option><?php
+                                    } ?>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="field name required">
+                            <label class="label" for="publisher_id"><span><?= $block->
+                                    escapeHtmlAttr(__('Publisher')) ?></span></label>
+                            <div class="control">
+                                <select name="publisher_id" data-validate="{}">
+                                    <option value="" disabled selected>Select Publisher</option>
+                                    <?php foreach($block->getAllPublishers() as $publisher){
+                                        ?><option value="<?php echo $publisher->getPublisherId() ?>"><?php echo $publisher->getName() ?></option><?php
+                                    } ?>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+            </fieldset>
+            <div class="actions-toolbar">
+                <div class="primary">
+                    <button type="submit" class="action submit primary" title="Save"><span><?= $block->
+                            escapeHtmlAttr(__('Save')) ?></span></button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

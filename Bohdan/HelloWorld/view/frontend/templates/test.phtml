@@ -1,0 +1,40 @@
+<?php
+
+use Bohdan\HelloWorld\ViewModel\BookViewModel;
+use Bohdan\HelloWorld\ViewModel\IndexViewModel;
+use Magento\Framework\View\Element\Template;
+
+
+/**
+ *@var Template $block
+ */
+
+
+//$viewModel = $block->getData('viewModel');
+$indexViewModel = $block->getData('reindexViewModel');
+$hello = $indexViewModel->hello();
+echo $hello;
+
+$indexesTry = $indexViewModel->manualIndexing();
+echo '<br>';
+print_r($indexesTry);
+echo '<br>';
+var_dump($indexesTry);
+//$viewModel->info();
+
+/*$params = $viewModel->getParams();
+foreach ($params as $key=>$value) {
+    echo "</br>";
+    echo "Key: " . $key . " Value: " . $value;
+    echo "</br>";
+}
+
+
+$items = $viewModel->getList();
+echo "Number of record== " . count($items);
+echo "</br>";
+foreach ($items as $item) {
+    echo "</br>";
+    echo "ID :" . $item->getId() . " ". "Title : ". $item->getTitle() . " Description : " . $item->getDescription() . " Author Name: " . $item->getLastName();
+    echo "</br>";
+}*/

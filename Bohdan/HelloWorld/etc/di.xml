@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Bohdan\HelloWorld\Api\Data\BookInterface" type="Bohdan\HelloWorld\Model\Book" />
+    <preference for="Bohdan\HelloWorld\Api\Data\BookSearchResultInterface" type="Bohdan\HelloWorld\Model\BookSearchResult" />
+    <preference for="Bohdan\HelloWorld\Api\BookRepositoryInterface" type="Bohdan\HelloWorld\Model\BookRepository" />
+</config>

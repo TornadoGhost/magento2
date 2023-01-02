@@ -1,0 +1,17 @@
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="phone" resource="default" engine="innodb" comment="Phones">
+        <column xsi:type="int" name="phone_id" identity="true" nullable="false" unsigned="true" comment="Phone's ID"/>
+        <column xsi:type="text" name="name" nullable="false" comment="Phone's name"/>
+        <column xsi:type="double" name="screen" nullable="false" comment="Phone's screen size"/>
+        <column xsi:type="text" name="processor" nullable="false" comment="Phone's processor"/>
+        <column xsi:type="timestamp" name="created_at" default="CURRENT_TIMESTAMP" onCreate="true" nullable="true" comment="Created Data"/>
+        <column xsi:type="timestamp" name="updated_at" default="CURRENT_TIMESTAMP" on_update="true" nullable="true" comment="Updated Data"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="phone_id"/>
+        </constraint>
+        <index referenceId="INDEX_SEVERITY" indexType="btree">
+            <column name="screen"/>
+        </index>
+    </table>
+</schema>

@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="checkout_cart_product_add_after">
+        <observer name="gift_cart_observer" instance="Tasks\Gift\Observer\AddGift"/>
+    </event>
+    <event name="checkout_cart_add_product_complete">
+        <observer name="gift_cart_discount_observer" instance="Tasks\Gift\Observer\AddDiscount"/>
+    </event>
+    <event name="sales_quote_item_delete_after">
+        <observer name="gift_cart_delete_changes_observer" instance="Tasks\Gift\Observer\DeleteActions"/>
+    </event>
+    <event name="checkout_cart_product_add_before">
+        <observer name="restrict_gift_amount" instance="Tasks\Gift\Observer\Amount"/>
+    </event>
+</config>

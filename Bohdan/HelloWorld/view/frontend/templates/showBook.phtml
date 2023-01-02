@@ -1,0 +1,15 @@
+<?php
+
+use Bohdan\HelloWorld\Block\Display;
+
+/**
+ * @var Display $block
+ */
+?>
+<h1>
+    <?php
+    echo $block->getData('title');
+    $dataBook = $block->getBookTitle();
+
+    ?>
+</h1>

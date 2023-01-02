@@ -1,0 +1,18 @@
+{
+    "laptop": {
+        "column": {
+            "laptop_id": true,
+            "name": true,
+            "screen": true,
+            "processor": true,
+            "ram": true,
+            "drive": true,
+            "created_at": true,
+            "update": true,
+            "updated_at": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    }
+}

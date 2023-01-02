@@ -1,0 +1,13 @@
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="powerbank" resource="default" engine="innodb"
+               comment="Powerbank table">
+        <column xsi:type="int" name="powerbank_id" identity="true" nullable="false" unsigned="true" comment="Powerbank Id"/>
+        <column xsi:type="varchar" name="name" nullable="false" length="100" comment="Phone model"/>
+        <column xsi:type="int" name="capacity" nullable="false" comment="Battery capacity"/>
+        <column xsi:type="int" name="weight" nullable="false" comment="Phone weight"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="powerbank_id"/>
+        </constraint>
+    </table>
+</schema>

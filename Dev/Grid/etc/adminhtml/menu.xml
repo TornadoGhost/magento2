@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Dev_Grid::phone" title="Phones" module="Dev_Grid" sortOrder="51" resource="Dev_Grid::phone"/>
+        <add id="Dev_Grid::phone_list" title="Phones list" module="Dev_Grid" sortOrder="1000" parent="Dev_Grid::phone"
+             resource="Dev_Grid::phone_list" action="dev_grid/index/index"/>
+    </menu>
+</config>

@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="content">
+            <!--<block class="Bohdan\HelloWorld\Block\Test"
+                   name="bohdan.helloworld.index.test"
+                   template="Bohdan_HelloWorld::test.phtml"/>-->
+<!--            <block class="Magento\Framework\View\Element\Template"
+                   name="bohdan.helloworld.index.test"
+                   template="Bohdan_HelloWorld::test.phtml">
+                <arguments>
+                    <argument name="viewModel" xsi:type="object">Bohdan\HelloWorld\ViewModel\BookViewModel</argument>
+                </arguments>
+            </block>-->
+            <block class="Magento\Framework\View\Element\Template"
+                   name="bohdan.helloworld.index.test"
+                   template="Bohdan_HelloWorld::test.phtml">
+                <arguments>
+                    <argument name="viewModel" xsi:type="object">Bohdan\HelloWorld\ViewModel\BookViewModel</argument>
+                    <argument name="reindexViewModel" xsi:type="object">Bohdan\HelloWorld\ViewModel\IndexViewModel</argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+    </body>
+</page>

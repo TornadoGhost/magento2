@@ -1,0 +1,40 @@
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="book" resource="default" engine="innodb"
+           comment="Books Catalog">
+        <column xsi:type="int" name="book_id" identity="true" unsigned="true" nullable="false" comment="Book ID"/>
+        <column xsi:type="text" name="title" nullable="false" comment="Book Title"/>
+        <column xsi:type="text" name="description" nullable="false" comment="Book's Description"/>
+        <column xsi:type="int" name="author_id" nullable="false" unsigned="true" comment="Author Id"/>
+        <column xsi:type="int" name="publisher_id" nullable="false" unsigned="true" comment="Publisher Id"/>
+        <column xsi:type="timestamp" name="created_at" nullable="true" default="CURRENT_TIMESTAMP" onCreate="true" comment="Date and time of the created post" />
+        <column xsi:type="timestamp" name="updated_at" nullable="true" default="CURRENT_TIMESTAMP" on_update="true" comment="Date and time of the created post" />
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="book_id"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="BOOK_AUTHOR_ID_AUTHOR_AUTHOR_ID" table="book" column="author_id" referenceTable="author" referenceColumn="author_id" onDelete="CASCADE"/>
+        <constraint xsi:type="foreign" referenceId="BOOK_AUTHOR_ID_PUBLISHER_PUBLISHER_ID" table="book" column="publisher_id" referenceTable="publisher" referenceColumn="publisher_id" onDelete="CASCADE"/>
+    </table>
+    <table name="author" resource="default" engine="innodb" comment="Authors">
+        <column xsi:type="int" name="author_id" identity="true" nullable="false" unsigned="true" comment="Author Id"/>
+        <column xsi:type="text" name="first_name" nullable="false" comment="Author's First Name" />
+        <column xsi:type="text" name="last_name"  nullable="false" comment="Author's Last Name" />
+        <column xsi:type="timestamp" name="created_at" nullable="true" comment="Date and time when author was added" onCreate="true" default="CURRENT_TIMESTAMP"/>
+        <column xsi:type="timestamp" name="updated_at" nullable="true" comment="Date and time when author's data was updated" on_update="true" default="CURRENT_TIMESTAMP"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="author_id"/>
+
+        </constraint>
+    </table>
+    <table name="publisher" resource="default" engine="innodb" comment="Book's publishers">
+        <column xsi:type="int" name="publisher_id" identity="true" nullable="false" unsigned="true" comment="Publisher's Id"/>
+        <column xsi:type="text" name="name" nullable="false" comment="Name Of Publishing Company"/>
+        <column xsi:type="date" name="opened_at" nullable="false" comment="Data When Company Start Publishing"/>
+        <column xsi:type="date" name="closed_at" nullable="true" comment="Data When Company Stop Publishing"/>
+        <column xsi:type="timestamp" name="created_at" default="CURRENT_TIMESTAMP" onCreate="true" nullable="true" comment="Date And Time Of Created Data"/>
+        <column xsi:type="timestamp" name="updated_at" default="CURRENT_TIMESTAMP" on_update="true" nullable="true" comment="Date And time Of Updated Data"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="publisher_id"/>
+        </constraint>
+    </table>
+</schema>

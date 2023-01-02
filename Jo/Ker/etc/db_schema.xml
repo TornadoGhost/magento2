@@ -1,0 +1,18 @@
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="laptop" resource="default" engine="innodb" comment="Laptops">
+        <column name="laptop_id" xsi:type="int" identity="true" unsigned="true" nullable="false" comment="Laptop ID"/>
+        <column name="name" xsi:type="text" nullable="false" comment="Laptop name"/>
+        <column name="screen" xsi:type="float" nullable="false" comment="Laptop screen size"/>
+        <column name="processor" xsi:type="text" nullable="false" comment="Laptop processor"/>
+        <column name="ram" xsi:type="int" nullable="false" comment="Laptop ram size"/>
+        <column name="drive" xsi:type="int" nullable="false" comment="Laptop drive size"/>
+        <column name="created_at" xsi:type="timestamp" default="CURRENT_TIMESTAMP" nullable="true"
+                comment="Laptop data creation time"/>
+        <column name="updated_at" xsi:type="timestamp" on_update="true" default="CURRENT_TIMESTAMP"
+                nullable="true" comment="Laptop data updating time"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="laptop_id"/>
+        </constraint>
+    </table>
+</schema>

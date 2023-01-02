@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Sandbox_Database::Wanna" title="Wanna" module="Sandbox_Database" sortOrder="59" resource="Sandbox_Database::Wanna"/>
+        <add id="Sandbox_Database::Die" title="Die" module="Sandbox_Database" sortOrder="10" resource="Sandbox_Database::Die" parent="Sandbox_Database::Wanna" action="brazzers/one/hand"/>
+    </menu>
+</config>

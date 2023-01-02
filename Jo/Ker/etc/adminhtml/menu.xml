@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Jo_Ker::joker" title="Joker" module="Jo_Ker" sortOrder="51" resource="Jo_Ker::joker"/>
+
+        <add id="Jo_Ker::laptop" title="Manage Laptop" module="Jo_Ker" sortOrder="10"
+             action="joker/laptop/index" resource="Jo_Ker::laptop" parent="Jo_Ker::joker"/>
+
+        <!--<add id="Mageplaza_HelloWorld::hello_configuration" title="Configuration"
+             module="Mageplaza_HelloWorld" sortOrder="99" parent="Mageplaza_HelloWorld::helloworld"
+             action="adminhtml/system_config/edit/section/helloworld"
+             resource="Mageplaza_HelloWorld::helloworld_configuration"/>-->
+    </menu>
+</config>

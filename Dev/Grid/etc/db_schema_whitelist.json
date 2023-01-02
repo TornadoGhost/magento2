@@ -1,0 +1,18 @@
+{
+    "phone": {
+        "column": {
+            "phone_id": true,
+            "name": true,
+            "screen": true,
+            "processor": true,
+            "created_at": true,
+            "updated_at": true
+        },
+        "index": {
+            "PHONE_SCREEN": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    }
+}

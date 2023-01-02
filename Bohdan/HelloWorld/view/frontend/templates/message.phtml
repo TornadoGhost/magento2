@@ -1,0 +1,19 @@
+<?php
+
+use Bohdan\HelloWorld\Block\Display;
+
+/* @var Display $block
+ *
+ */
+
+//echo $block->message();
+/*foreach ($block->getAllBooks() as $book){
+    echo $book->getTitle(); */?><!--<br>--><?php
+/*}*/
+$collecion = $block->getCol();
+
+foreach ($collecion->getItems() as $test){
+    /*echo $test->getTitle(); */?><!--<br>--><?php
+print_r([$test->getTitle(), $test->getFirstName(), $test->getLastName()]);
+}
+?>
