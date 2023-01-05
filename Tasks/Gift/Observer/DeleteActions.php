@@ -44,6 +44,11 @@ class DeleteActions implements ObserverInterface
 //        $items3 = $this->cart->getQuote()->getAllItems();
         $items4 = $this->cart->getQuote()->getAllVisibleItems();
 
+        $cartPriceBeforeDelete = [];
+        foreach ($items4 as $value) {
+            $cartPriceBeforeDelete[$value->getSku()] = $value->getPrice();
+        }
+
 
         $options = $item->getQtyOptions();
         if (!$options) {
@@ -60,7 +65,7 @@ class DeleteActions implements ObserverInterface
                             $item->setOriginalCustomPrice($newPrice);
                             $item->save();
                             $cartTotalPrice = $this->cart->getQuote();
-                            if($newPrice != $cartTotalPrice->getGrandTotal()){
+                            if ($newPrice != $cartTotalPrice->getGrandTotal()) {
                                 $cartTotalPrice->setSubtotalWithDiscount($newPrice)
                                     ->setBaseSubtotalWithDiscount($newPrice)
                                     ->setSubtotal($newPrice)
@@ -75,6 +80,8 @@ class DeleteActions implements ObserverInterface
                 }
             }
         } else if ($options) {
+            $newTotalCartPrice = null;
+
             foreach ($options as $option) {
                 $productId = $option->getProductId();
                 if ($productId) {
@@ -82,16 +89,29 @@ class DeleteActions implements ObserverInterface
                     $productGiftSku = $product->getMyGift();
                     if ($productGiftSku) {
                         foreach ($items4 as $cartProduct) {
+
                             $productSku = $cartProduct->getSku();
                             $productOptions = $cartProduct->getProduct()->getTypeInstance(true)->getOrderOptions($cartProduct->getProduct());
-                            foreach ($productOptions['info_buyRequest'] as $key => $productOption){
-                                if($productSku == $productGiftSku && $key === "gift" && $productOption === 1){
+                            foreach ($productOptions['info_buyRequest'] as $key => $productOption) {
+                                if ($productSku == $productGiftSku && $key === "gift" && $productOption === 1) {
                                     $this->cart->removeItem($cartProduct->getId());
                                     $this->cart->getQuote()->setTotalsCollectedFlag(false);
                                     $this->cart->save();
+                                } //return regular price for manual added product 'B'(MySkuPants) and became a gift -v
+                                else if ($productSku == $productGiftSku) {
+                                    $getProductById = $this->productRepository->get($productSku);
+                                    $realPrice = $getProductById->getPrice();
+
+                                    $cartPriceBeforeDelete[$productSku] = $realPrice;
+
+                                    $cartProduct->setCustomPrice($realPrice);
+                                    $cartProduct->setOriginalCustomPrice($realPrice);
+                                    $cartProduct->setPrice($realPrice);
+                                    $cartProduct->save();
                                 }
+                                //tested -^
                             }
-                            if($cartProduct->getQty() > 1){
+                            /*if($cartProduct->getQty() > 1){
 //                                $cartProduct->setQty(1.0000);
                                 $cartProductQty = $cartProduct->getQty() - 1;
                                 $cartProductPrice = $cartProduct->getPrice();
@@ -110,7 +130,19 @@ class DeleteActions implements ObserverInterface
                                     ->setGrandTotal($newTotalPrice)
                                     ->setBaseGrandTotal($newTotalPrice);;
                                 $this->cart->save();
-                            }
+                            }*/
+                        }
+                        $cartTotalPrice = $this->cart->getQuote();
+                        $updateCartTotalPrice = array_sum($cartPriceBeforeDelete);
+                        //change cart total price after delete
+                        if($updateCartTotalPrice != $cartTotalPrice->getGrandTotal()){
+                            $cartTotalPrice->setSubtotalWithDiscount($updateCartTotalPrice)
+                                ->setBaseSubtotalWithDiscount($updateCartTotalPrice)
+                                ->setSubtotal($updateCartTotalPrice)
+                                ->setBaseSubtotal($updateCartTotalPrice)
+                                ->setGrandTotal($updateCartTotalPrice)
+                                ->setBaseGrandTotal($updateCartTotalPrice);
+                            $cartTotalPrice->save();
                         }
                     }
                 }

@@ -24,6 +24,21 @@ class AddDiscount implements ObserverInterface
         $allItems = $items4 = $this->cart->getQuote()->getAllItems();
 
         $giftSku = null;
+
+        /*foreach ($allItems as $item) {
+            if ($item['product']->getMyGift()) {
+                $giftSku = $item['product']->getMyGift();
+            }
+            if($item['product']->getSku() === $giftSku){
+                $price = $item->getPrice();
+                $item->setCustomPrice($price);
+                $item->setOriginalCustomPrice($price);
+                $item->setPrice($price);
+                $item->save();
+            }
+        }*/
+
+        /*$giftSku = null;
         $totalPrice = null;
 
         foreach ($allItems as $item) {
@@ -51,7 +66,7 @@ class AddDiscount implements ObserverInterface
 //        $productPrice = $product->getQuoteItemPrice();
 
         $cartTotalPrice = $this->cart->getQuote();
-        if($cartTotalPrice && !$totalPrice <= 0){
+        if($cartTotalPrice){
             $cartTotalPrice->setSubtotalWithDiscount($totalPrice)
                 ->setBaseSubtotalWithDiscount($totalPrice)
                 ->setSubtotal($totalPrice)
@@ -59,6 +74,6 @@ class AddDiscount implements ObserverInterface
                 ->setGrandTotal($totalPrice)
                 ->setBaseGrandTotal($totalPrice);
             $cartTotalPrice->save();
-        }
+        }*/
     }
 }

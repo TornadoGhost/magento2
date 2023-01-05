@@ -12,4 +12,7 @@
     <event name="checkout_cart_product_add_before">
         <observer name="restrict_gift_amount" instance="Tasks\Gift\Observer\Amount"/>
     </event>
+    <event name="checkout_cart_update_items_before">
+        <observer name="restrict_update_gift_qty" instance="Tasks\Gift\Observer\UpdateQty"/>
+    </event>
 </config>

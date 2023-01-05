@@ -27,6 +27,7 @@ class Amount implements ObserverInterface
         $cart = $this->cart->getQuote()->getAllVisibleItems();
         $product = $observer->getEvent()->getData('product');
 
+        //you cant add same gift product if he already in cary
         if($cart){
             foreach ($cart as $item){
                 /*if($item->getSku() === $product->getSku()){
