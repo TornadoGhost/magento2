@@ -1,0 +1,7 @@
+<config>
+    <section name="quote">
+        <group name="totals">
+            <item name="discount" instance="Tasks\TotalCollector\Model\Total\Quote\Custom" sort_order="300"/>
+        </group>
+    </section>
+</config>
